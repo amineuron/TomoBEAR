@@ -20,7 +20,7 @@
         "slurm_gpus_per_task": 0,
         "slurm": false,
         "gpu_worker_multiplier": 1,
-        "pipeline_location": "",
+        "pipeline_location": "/media/amin/mtwo/TomoBEAR",
         "pipeline_executable": "run_TomoBEAR.sh",
         "sbatch_wrapper": "sbatch.sh",
         "cuda_forward_compatibility": true,
@@ -34,7 +34,7 @@
         "project_description": "TomoBEAR project description",
         "wipe_cache": false,
         "motion_correction_command": "", 
-        "ctf_correction_command": "",
+        "ctf_correction_command": "/media/amin/mtwo/Gctf_v1.18/GCTF_v1.18_sm30-75_cu10.1",
         "ctffind_heredoc_path": "configurations/ctffind_heredoc.sh",
         "double_numbering": true,
         "prefix_position": 0,
@@ -91,6 +91,7 @@
         "tomogram_begin": 0,
         "tomogram_end": 0,
         "tomogram_step": 1,
+        "slice_digits": 2,
         "aligned_stack_binning": 4,
         "pre_aligned_stack_binning": 4,
         "template_matching_binning": 16,
@@ -108,7 +109,7 @@
         "keep_intermediates": true,
         "reconstruct": "binned",
         "em_clarity_path": "",
-        "dynamo_path": "",
+        "dynamo_path": "/mnt/fast/dynamoMCR",
         "astra_path": "",
         "modules": [],
         "duplicated_tilts": "last",
@@ -195,7 +196,7 @@
         "dose_weighted_sum_tilt_stacks_folder": "dose_weighted_sum_tilt_stacks",
         "denoised_binned_tomograms_folder": "denoised_binned_tomograms",
         "denoised_tilt_stacks_folder": "denoised_tilt_stacks",
-        "aretomo_command": "",
+        "aretomo_command": "/mnt/fast/AreTomo_1.3.4_Feb222023/AreTomo_1.3.4_Cuda118_Feb22_2023",
         "listening_time_threshold_in_minutes": 15
     },
     "StopPipeline": {
@@ -224,6 +225,8 @@
     "Reconstruct": {
         "execution_method": "in_order",
         "reconstruct": "binned",
+        "sirt_iter": -1,
+        "fake_sirt_iter": -1,
         "use_ctf_corrected_stack": true,
         "generate_exact_filtered_tomograms": false,
         "exact_filter_size": 1500,
@@ -393,7 +396,7 @@
                  20: Postprocessing with Trimvol
                  21: NAD (Nonlinear anistropic diffusion)",
         "directives_description": {
-            "path": "/path/to/imod/com/directives.csv",
+            "path": "/usr/local/IMOD/com/directives.csv",
             "link": "https://bio3d.colorado.edu/imod/doc/directives.html"
         },
         "directives": {
