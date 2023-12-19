@@ -16,20 +16,23 @@
 % along with this program.  If not, see <https://www.gnu.org/licenses/>.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function imod_version = getIMODVersion()
-output = executeCommand("3dmod -h", true, -1, true);
-output_lines = textscan(output,"%s","Delimiter","","endofline","\n");
-for i=1:length(output_lines{1})
-    if contains(output_lines{1}{i}, 'Version')
-        version_line = output_lines{1}{i};
-        break;
-    end
+function extended_header_lines = getExtendedHeaderNaive(file_path, log_file_id)
+if iscell(file_path)
+    command = sprintf("header %s", file_path{1});
+else
+    command = sprintf("header %s", file_path);
 end
-imod_version = regexp(version_line, "\d+\.\d+\.\d+", "match");
-% TODO:NOTE everywhere available but what if folder is not named by version
-if string(getenv("IMOD_DIR")) ~= "" && length(imod_version) > 1 || isempty(imod_version)
-    imod_version = regexp(string(getenv("IMOD_DIR")), "[\d]+\.[\d]+\.[\d]+", "match");
+if nargin == 2
+    output = executeCommand(command, false, log_file_id);
+else
+    output = executeCommand(command, false);
 end
-imod_version = string(imod_version);
+output = textscan(output, "%s", "delimiter", "\n");
+output = output{1};
+titles_line_idx = find(contains(output, "Titles"));
+titles_line = output(titles_line_idx);
+titles_line = strsplit(titles_line{1});
+titles_line_cnt = str2double(titles_line{1});
+extended_header_lines = output((titles_line_idx+2):end);
 end
 
